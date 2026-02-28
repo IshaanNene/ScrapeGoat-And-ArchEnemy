@@ -8,8 +8,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // State represents the engine's current lifecycle state.

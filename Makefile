@@ -1,11 +1,11 @@
 .PHONY: build test lint run clean docker-build docker-up help
 
-BINARY_NAME=webstalk
+BINARY_NAME=scrapegoat
 BUILD_DIR=./bin
-MAIN_PATH=./cmd/webstalk
+MAIN_PATH=./cmd/scrapegoat
 
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
-LDFLAGS=-ldflags "-X github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config.Version=$(VERSION)"
+LDFLAGS=-ldflags "-X github.com/IshaanNene/ScrapeGoat/internal/config.Version=$(VERSION)"
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -33,7 +33,7 @@ clean: ## Clean build artifacts
 	go clean -cache
 
 docker-build: ## Build Docker image
-	docker build -t webstalk:$(VERSION) .
+	docker build -t scrapegoat:$(VERSION) .
 
 docker-up: ## Start dev services
 	docker-compose up -d

@@ -1,5 +1,5 @@
 #!/bin/bash
-# WebStalk Test Runner & Benchmark Suite
+# ScrapeGoat Test Runner & Benchmark Suite
 # Usage: ./scripts/test.sh [unit|integration|bench|load|all]
 
 set -e
@@ -14,7 +14,7 @@ PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$PROJECT_ROOT"
 
 echo -e "${CYAN}═══════════════════════════════════════════${NC}"
-echo -e "${CYAN}  🕸️  WebStalk Test Suite${NC}"
+echo -e "${CYAN}  🕸️  ScrapeGoat Test Suite${NC}"
 echo -e "${CYAN}═══════════════════════════════════════════${NC}"
 
 run_unit_tests() {
@@ -69,7 +69,7 @@ run_load_test() {
 
     # Build and start the API server in background
     make build 2>/dev/null
-    ./bin/webstalk crawl https://quotes.toscrape.com --depth 0 --concurrency 1 &
+    ./bin/scrapegoat crawl https://quotes.toscrape.com --depth 0 --concurrency 1 &
     CRAWL_PID=$!
     sleep 3
 
@@ -98,19 +98,19 @@ run_crawl_examples() {
     make build 2>/dev/null
 
     echo -e "\n${CYAN}  Example 1: Single page fetch (depth 0)${NC}"
-    rm -rf /tmp/webstalk_test1
-    timeout 30 ./bin/webstalk crawl https://books.toscrape.com --depth 0 --concurrency 1 --format json --output /tmp/webstalk_test1 2>&1
-    echo -e "  Output: $(wc -l < /tmp/webstalk_test1/results.json 2>/dev/null || echo 'N/A') lines"
+    rm -rf /tmp/scrapegoat_test1
+    timeout 30 ./bin/scrapegoat crawl https://books.toscrape.com --depth 0 --concurrency 1 --format json --output /tmp/scrapegoat_test1 2>&1
+    echo -e "  Output: $(wc -l < /tmp/scrapegoat_test1/results.json 2>/dev/null || echo 'N/A') lines"
 
     echo -e "\n${CYAN}  Example 2: Shallow crawl — quotes.toscrape.com${NC}"
-    rm -rf /tmp/webstalk_test2
-    timeout 45 ./bin/webstalk crawl https://quotes.toscrape.com --depth 1 --concurrency 3 --format jsonl --output /tmp/webstalk_test2 2>&1
-    echo -e "  Output: $(wc -l < /tmp/webstalk_test2/results.jsonl 2>/dev/null || echo 'N/A') lines"
+    rm -rf /tmp/scrapegoat_test2
+    timeout 45 ./bin/scrapegoat crawl https://quotes.toscrape.com --depth 1 --concurrency 3 --format jsonl --output /tmp/scrapegoat_test2 2>&1
+    echo -e "  Output: $(wc -l < /tmp/scrapegoat_test2/results.jsonl 2>/dev/null || echo 'N/A') lines"
 
     echo -e "\n${CYAN}  Example 3: CSV output${NC}"
-    rm -rf /tmp/webstalk_test3
-    timeout 30 ./bin/webstalk crawl https://books.toscrape.com --depth 0 --concurrency 1 --format csv --output /tmp/webstalk_test3 2>&1
-    echo -e "  Output: $(wc -l < /tmp/webstalk_test3/results.csv 2>/dev/null || echo 'N/A') lines"
+    rm -rf /tmp/scrapegoat_test3
+    timeout 30 ./bin/scrapegoat crawl https://books.toscrape.com --depth 0 --concurrency 1 --format csv --output /tmp/scrapegoat_test3 2>&1
+    echo -e "  Output: $(wc -l < /tmp/scrapegoat_test3/results.csv 2>/dev/null || echo 'N/A') lines"
 
     echo -e "${GREEN}✓ Crawl examples complete${NC}\n"
 }

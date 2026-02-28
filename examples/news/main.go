@@ -6,24 +6,24 @@ import (
 	"fmt"
 	"time"
 
-	webstalk "github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/pkg/webstalk"
+	scrapegoat "github.com/IshaanNene/ScrapeGoat/pkg/scrapegoat"
 )
 
 func main() {
 	fmt.Println("📰 Multi-Site News Aggregator")
 	fmt.Println("   Auto-extracting structured data from multiple news sites")
 
-	crawler := webstalk.NewCrawler(
-		webstalk.WithConcurrency(8),
-		webstalk.WithMaxDepth(1),
-		webstalk.WithDelay(300*time.Millisecond),
-		webstalk.WithOutput("jsonl", "./output/news"),
-		webstalk.WithMaxRequests(100),
-		webstalk.WithRobotsRespect(true),
+	crawler := scrapegoat.NewCrawler(
+		scrapegoat.WithConcurrency(8),
+		scrapegoat.WithMaxDepth(1),
+		scrapegoat.WithDelay(300*time.Millisecond),
+		scrapegoat.WithOutput("jsonl", "./output/news"),
+		scrapegoat.WithMaxRequests(100),
+		scrapegoat.WithRobotsRespect(true),
 	)
 
 	// Follow article links
-	crawler.OnHTML("a[href]", func(e *webstalk.Element) {
+	crawler.OnHTML("a[href]", func(e *scrapegoat.Element) {
 		href := e.Attr("href")
 		// Only follow links that look like articles
 		if len(href) > 20 {
@@ -32,7 +32,7 @@ func main() {
 	})
 
 	// Extract headline and content preview
-	crawler.OnHTML("article, .article, .post", func(e *webstalk.Element) {
+	crawler.OnHTML("article, .article, .post", func(e *scrapegoat.Element) {
 		title := e.Selection.Find("h1, h2").First().Text()
 		body := e.Selection.Find("p").First().Text()
 		author := e.Selection.Find(".author, .byline, [rel='author']").First().Text()

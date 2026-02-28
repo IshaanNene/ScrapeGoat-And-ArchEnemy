@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // RegexParser extracts data using regular expressions.

@@ -1,8 +1,8 @@
 package parser
 
 import (
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // Parser extracts data and links from a fetched response.

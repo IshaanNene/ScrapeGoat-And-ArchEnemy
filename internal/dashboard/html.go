@@ -5,7 +5,7 @@ const dashboardHTML = `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebStalk Dashboard</title>
+    <title>ScrapeGoat Dashboard</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', -apple-system, system-ui, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
@@ -34,7 +34,7 @@ const dashboardHTML = `<!DOCTYPE html>
 </head>
 <body>
     <div class="header">
-        <h1>WebStalk Dashboard</h1>
+        <h1>ScrapeGoat Dashboard</h1>
         <span class="status idle" id="status">Idle</span>
     </div>
     <div class="grid" id="stats">
@@ -49,7 +49,7 @@ const dashboardHTML = `<!DOCTYPE html>
         <div class="card accent"><div class="label">Active Workers</div><div class="value" id="active_workers">0</div></div>
         <div class="card"><div class="label">Elapsed</div><div class="value" id="elapsed">0s</div></div>
     </div>
-    <div class="footer">WebStalk v1.0 — Auto-refreshes every 2s</div>
+    <div class="footer">ScrapeGoat v1.0 — Auto-refreshes every 2s</div>
     <script>
         async function refresh() {
             try {

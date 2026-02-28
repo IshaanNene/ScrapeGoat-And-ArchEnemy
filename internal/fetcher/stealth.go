@@ -82,7 +82,7 @@ func DefaultStealthConfig() *StealthConfig {
 // This is injected into every page before any other scripts run.
 func (sc *StealthConfig) StealthJS() string {
 	return fmt.Sprintf(`
-// --- WebStalk Stealth Mode ---
+// --- ScrapeGoat Stealth Mode ---
 
 // Override navigator properties
 Object.defineProperty(navigator, 'platform', { get: () => '%s' });

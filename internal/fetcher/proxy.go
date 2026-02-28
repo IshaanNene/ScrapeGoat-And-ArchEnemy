@@ -10,7 +10,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
 )
 
 // ProxyManager handles proxy rotation and health checking.

@@ -12,8 +12,8 @@ import (
 	"github.com/go-rod/rod/lib/proto"
 	"github.com/go-rod/stealth"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // BrowserFetcher implements Fetcher using a headless browser via Rod.

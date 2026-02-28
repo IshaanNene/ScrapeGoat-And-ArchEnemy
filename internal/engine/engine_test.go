@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // --- Frontier Tests ---

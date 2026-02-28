@@ -11,9 +11,9 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: webstalk
-      POSTGRES_PASSWORD: webstalk
-      POSTGRES_DB: webstalk
+      POSTGRES_USER: scrapegoat
+      POSTGRES_PASSWORD: scrapegoat
+      POSTGRES_DB: scrapegoat
     ports:
       - "5432:5432"
     volumes:

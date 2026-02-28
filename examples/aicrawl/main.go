@@ -11,18 +11,18 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/ai"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/engine"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/fetcher"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/parser"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/pipeline"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/storage"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/ai"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/engine"
+	"github.com/IshaanNene/ScrapeGoat/internal/fetcher"
+	"github.com/IshaanNene/ScrapeGoat/internal/parser"
+	"github.com/IshaanNene/ScrapeGoat/internal/pipeline"
+	"github.com/IshaanNene/ScrapeGoat/internal/storage"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 func main() {
-	fmt.Println("🤖 WebStalk AI-Powered Web Crawler")
+	fmt.Println("🤖 ScrapeGoat AI-Powered Web Crawler")
 	fmt.Println("   Crawl → Extract → Summarize → NER → Sentiment (via LLM)")
 	fmt.Println()
 
@@ -38,9 +38,9 @@ func main() {
 		fmt.Println("  go run ./examples/aicrawl/ https://en.wikipedia.org/wiki/Artificial_intelligence")
 		fmt.Println()
 		fmt.Println("Environment variables:")
-		fmt.Println("  WEBSTALK_LLM_PROVIDER=ollama|openai|custom  (default: ollama)")
-		fmt.Println("  WEBSTALK_LLM_MODEL=llama3.2                 (default: llama3.2)")
-		fmt.Println("  WEBSTALK_LLM_ENDPOINT=http://localhost:11434 (default for ollama)")
+		fmt.Println("  SCRAPEGOAT_LLM_PROVIDER=ollama|openai|custom  (default: ollama)")
+		fmt.Println("  SCRAPEGOAT_LLM_MODEL=llama3.2                 (default: llama3.2)")
+		fmt.Println("  SCRAPEGOAT_LLM_ENDPOINT=http://localhost:11434 (default for ollama)")
 		fmt.Println("  OPENAI_API_KEY=sk-...                        (for openai provider)")
 		os.Exit(1)
 	}
@@ -53,13 +53,13 @@ func main() {
 	model := "llama3.2"
 	endpoint := "http://localhost:11434"
 
-	if p := os.Getenv("WEBSTALK_LLM_PROVIDER"); p != "" {
+	if p := os.Getenv("SCRAPEGOAT_LLM_PROVIDER"); p != "" {
 		provider = ai.LLMProvider(p)
 	}
-	if m := os.Getenv("WEBSTALK_LLM_MODEL"); m != "" {
+	if m := os.Getenv("SCRAPEGOAT_LLM_MODEL"); m != "" {
 		model = m
 	}
-	if e := os.Getenv("WEBSTALK_LLM_ENDPOINT"); e != "" {
+	if e := os.Getenv("SCRAPEGOAT_LLM_ENDPOINT"); e != "" {
 		endpoint = e
 	}
 	if provider == ai.ProviderOpenAI && endpoint == "http://localhost:11434" {

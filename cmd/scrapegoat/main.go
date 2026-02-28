@@ -11,13 +11,13 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/engine"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/fetcher"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/observability"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/parser"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/pipeline"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/storage"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/engine"
+	"github.com/IshaanNene/ScrapeGoat/internal/fetcher"
+	"github.com/IshaanNene/ScrapeGoat/internal/observability"
+	"github.com/IshaanNene/ScrapeGoat/internal/parser"
+	"github.com/IshaanNene/ScrapeGoat/internal/pipeline"
+	"github.com/IshaanNene/ScrapeGoat/internal/storage"
 )
 
 var (
@@ -36,9 +36,9 @@ var (
 
 func main() {
 	rootCmd := &cobra.Command{
-		Use:   "webstalk",
-		Short: "WebStalk — All-in-One Web Scraper/Crawler",
-		Long: `WebStalk is a next-generation, enterprise-grade web scraping and crawling toolkit.
+		Use:   "scrapegoat",
+		Short: "ScrapeGoat — All-in-One Web Scraper/Crawler",
+		Long: `ScrapeGoat is a next-generation, enterprise-grade web scraping and crawling toolkit.
 
 Features:
   • High-performance concurrent crawling with per-domain throttling
@@ -208,9 +208,9 @@ func runCrawl(cmd *cobra.Command, args []string) error {
 	if stats["items_scraped"] == int64(0) {
 		fmt.Println("\n💡 No items were scraped. The crawl command discovers and follows links by default.")
 		fmt.Println("   For automatic content extraction, try:")
-		fmt.Println("     webstalk search <url>      — extract title, headings, body text, meta")
-		fmt.Println("     webstalk ai-crawl <url>    — AI-powered summarize, NER, sentiment")
-		fmt.Println("     webstalk crawl <url> -c config.yaml  — use custom parse rules")
+		fmt.Println("     scrapegoat search <url>      — extract title, headings, body text, meta")
+		fmt.Println("     scrapegoat ai-crawl <url>    — AI-powered summarize, NER, sentiment")
+		fmt.Println("     scrapegoat crawl <url> -c config.yaml  — use custom parse rules")
 	}
 
 	return nil
@@ -222,7 +222,7 @@ func versionCmd() *cobra.Command {
 		Use:   "version",
 		Short: "Print version information",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Printf("WebStalk %s\n", config.Version)
+			fmt.Printf("ScrapeGoat %s\n", config.Version)
 		},
 	}
 }

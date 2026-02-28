@@ -3,8 +3,8 @@ package parser
 import (
 	"log/slog"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // CompositeParser combines multiple parser implementations.

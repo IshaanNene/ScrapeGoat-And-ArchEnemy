@@ -7,37 +7,37 @@ import (
 	"strings"
 	"time"
 
-	webstalk "github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/pkg/webstalk"
+	scrapegoat "github.com/IshaanNene/ScrapeGoat/pkg/scrapegoat"
 )
 
 func main() {
 	fmt.Println("🛒 E-Commerce Product Scraper — books.toscrape.com")
 	fmt.Println("   Extracting products: title, price, rating, stock, image")
 
-	crawler := webstalk.NewCrawler(
-		webstalk.WithConcurrency(5),
-		webstalk.WithMaxDepth(3),
-		webstalk.WithDelay(200*time.Millisecond),
-		webstalk.WithOutput("json", "./output/ecommerce"),
-		webstalk.WithAllowedDomains("books.toscrape.com"),
-		webstalk.WithMaxRequests(200),
+	crawler := scrapegoat.NewCrawler(
+		scrapegoat.WithConcurrency(5),
+		scrapegoat.WithMaxDepth(3),
+		scrapegoat.WithDelay(200*time.Millisecond),
+		scrapegoat.WithOutput("json", "./output/ecommerce"),
+		scrapegoat.WithAllowedDomains("books.toscrape.com"),
+		scrapegoat.WithMaxRequests(200),
 	)
 
 	// Follow pagination and category links
-	crawler.OnHTML("li.next a[href]", func(e *webstalk.Element) {
+	crawler.OnHTML("li.next a[href]", func(e *scrapegoat.Element) {
 		e.Follow(e.Attr("href"))
 	})
-	crawler.OnHTML(".side_categories ul li a", func(e *webstalk.Element) {
+	crawler.OnHTML(".side_categories ul li a", func(e *scrapegoat.Element) {
 		e.Follow(e.Attr("href"))
 	})
 
 	// Follow individual product links
-	crawler.OnHTML("h3 a[href]", func(e *webstalk.Element) {
+	crawler.OnHTML("h3 a[href]", func(e *scrapegoat.Element) {
 		e.Follow(e.Attr("href"))
 	})
 
 	// Extract product details from individual product pages
-	crawler.OnHTML(".product_page", func(e *webstalk.Element) {
+	crawler.OnHTML(".product_page", func(e *scrapegoat.Element) {
 		title := e.Selection.Find("h1").Text()
 		price := e.Selection.Find(".price_color").First().Text()
 		availability := strings.TrimSpace(e.Selection.Find(".availability").First().Text())

@@ -1,4 +1,4 @@
-# WebStalk Default Configuration
+# ScrapeGoat Default Configuration
 engine:
   concurrency: 10
   max_depth: 5

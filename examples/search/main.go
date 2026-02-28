@@ -10,11 +10,11 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	webstalk "github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/pkg/webstalk"
+	scrapegoat "github.com/IshaanNene/ScrapeGoat/pkg/scrapegoat"
 )
 
 func main() {
-	fmt.Println("🔍 WebStalk Search Engine Crawler")
+	fmt.Println("🔍 ScrapeGoat Search Engine Crawler")
 	fmt.Println("   Indexing pages: title, body text, headings, meta, link graph")
 	fmt.Println()
 
@@ -29,17 +29,17 @@ func main() {
 
 	seeds := os.Args[1:]
 
-	crawler := webstalk.NewCrawler(
-		webstalk.WithConcurrency(10),
-		webstalk.WithMaxDepth(3),
-		webstalk.WithDelay(200*time.Millisecond),
-		webstalk.WithOutput("jsonl", "./output/search_index"),
-		webstalk.WithMaxRequests(500),
-		webstalk.WithRobotsRespect(true),
+	crawler := scrapegoat.NewCrawler(
+		scrapegoat.WithConcurrency(10),
+		scrapegoat.WithMaxDepth(3),
+		scrapegoat.WithDelay(200*time.Millisecond),
+		scrapegoat.WithOutput("jsonl", "./output/search_index"),
+		scrapegoat.WithMaxRequests(500),
+		scrapegoat.WithRobotsRespect(true),
 	)
 
 	// Follow all internal links for discovery
-	crawler.OnHTML("a[href]", func(e *webstalk.Element) {
+	crawler.OnHTML("a[href]", func(e *scrapegoat.Element) {
 		href := e.Attr("href")
 		if href != "" && !strings.HasPrefix(href, "#") && !strings.HasPrefix(href, "javascript:") && !strings.HasPrefix(href, "mailto:") {
 			e.Follow(href)
@@ -47,7 +47,7 @@ func main() {
 	})
 
 	// Index the entire page
-	crawler.OnHTML("html", func(e *webstalk.Element) {
+	crawler.OnHTML("html", func(e *scrapegoat.Element) {
 		url := e.Response.Request.URLString()
 
 		// Title

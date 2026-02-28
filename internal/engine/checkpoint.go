@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // CheckpointManager handles saving and loading crawl state for pause/resume.
@@ -45,7 +45,7 @@ type checkpointStats struct {
 func NewCheckpointManager(interval time.Duration) *CheckpointManager {
 	return &CheckpointManager{
 		interval:      interval,
-		checkpointDir: ".webstalk_checkpoints",
+		checkpointDir: ".scrapegoat_checkpoints",
 	}
 }
 

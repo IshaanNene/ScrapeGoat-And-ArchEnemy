@@ -5,7 +5,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // Middleware processes an item and returns the (possibly modified) item.

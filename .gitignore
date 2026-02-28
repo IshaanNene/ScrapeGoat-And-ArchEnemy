@@ -7,7 +7,7 @@ bin/
 *.dylib
 
 # Root-level stale builds (use bin/ instead)
-/webstalk
+/scrapegoat
 /aicrawl
 /ecommerce
 /github
@@ -41,7 +41,7 @@ configs/local.yml
 !.env.example
 
 # Checkpoint files (can appear in root, tests/, or any subdirectory)
-**/.webstalk_checkpoints/
+**/.scrapegoat_checkpoints/
 checkpoints/
 *.checkpoint
 *.ckpt

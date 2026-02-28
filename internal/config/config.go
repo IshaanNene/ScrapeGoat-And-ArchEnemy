@@ -7,7 +7,7 @@ import (
 // Version is set at build time via ldflags.
 var Version = "dev"
 
-// Config is the root configuration for WebStalk.
+// Config is the root configuration for ScrapeGoat.
 type Config struct {
 	Engine   EngineConfig   `mapstructure:"engine"   yaml:"engine"`
 	Fetcher  FetcherConfig  `mapstructure:"fetcher"  yaml:"fetcher"`

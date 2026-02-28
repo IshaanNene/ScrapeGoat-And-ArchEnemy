@@ -7,25 +7,25 @@ import (
 	"strings"
 	"time"
 
-	webstalk "github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/pkg/webstalk"
+	scrapegoat "github.com/IshaanNene/ScrapeGoat/pkg/scrapegoat"
 )
 
 func main() {
 	fmt.Println("📚 Wikipedia Knowledge Extractor")
 	fmt.Println("   Deep crawl: title, summary, categories, references")
 
-	crawler := webstalk.NewCrawler(
-		webstalk.WithConcurrency(10),
-		webstalk.WithMaxDepth(3),
-		webstalk.WithDelay(100*time.Millisecond),
-		webstalk.WithOutput("jsonl", "./output/wikipedia"),
-		webstalk.WithAllowedDomains("en.wikipedia.org"),
-		webstalk.WithMaxRequests(1000),
-		webstalk.WithRobotsRespect(true),
+	crawler := scrapegoat.NewCrawler(
+		scrapegoat.WithConcurrency(10),
+		scrapegoat.WithMaxDepth(3),
+		scrapegoat.WithDelay(100*time.Millisecond),
+		scrapegoat.WithOutput("jsonl", "./output/wikipedia"),
+		scrapegoat.WithAllowedDomains("en.wikipedia.org"),
+		scrapegoat.WithMaxRequests(1000),
+		scrapegoat.WithRobotsRespect(true),
 	)
 
 	// Follow internal wiki links
-	crawler.OnHTML("#bodyContent a[href^='/wiki/']", func(e *webstalk.Element) {
+	crawler.OnHTML("#bodyContent a[href^='/wiki/']", func(e *scrapegoat.Element) {
 		href := e.Attr("href")
 		if !strings.Contains(href, ":") {
 			e.Follow("https://en.wikipedia.org" + href)
@@ -33,7 +33,7 @@ func main() {
 	})
 
 	// Extract article data
-	crawler.OnHTML("#content", func(e *webstalk.Element) {
+	crawler.OnHTML("#content", func(e *scrapegoat.Element) {
 		title := strings.TrimSpace(e.Selection.Find("#firstHeading").Text())
 		if title == "" {
 			return

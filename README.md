@@ -1,8 +1,8 @@
-# WebStalk 🕷️
+# ScrapeGoat 🕷️
 
 **Next-generation, enterprise-grade web scraping and crawling toolkit written in Go.**
 
-WebStalk combines the best of Scrapy, Colly, and modern crawler services into a single, high-performance platform.
+ScrapeGoat combines the best of Scrapy, Colly, and modern crawler services into a single, high-performance platform.
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -33,8 +33,8 @@ WebStalk combines the best of Scrapy, Colly, and modern crawler services into a 
 ### Install
 
 ```bash
-git clone https://github.com/IshaanNene/ScrapeGoat-And-ArchEnemy
-cd ScrapeGoat-And-ArchEnemy
+git clone https://github.com/IshaanNene/ScrapeGoat
+cd ScrapeGoat
 make build
 ```
 
@@ -42,19 +42,19 @@ make build
 
 ```bash
 # Crawl a website (depth 2, JSON output)
-./bin/webstalk crawl https://quotes.toscrape.com --depth 2
+./bin/scrapegoat crawl https://quotes.toscrape.com --depth 2
 
 # Limit pages (great for testing)
-./bin/webstalk crawl https://news.ycombinator.com --depth 1 --max-requests 30
+./bin/scrapegoat crawl https://news.ycombinator.com --depth 1 --max-requests 30
 
 # Single page (depth 0 = just the seed URL)
-./bin/webstalk crawl https://en.wikipedia.org/wiki/Web_scraping --depth 0
+./bin/scrapegoat crawl https://en.wikipedia.org/wiki/Web_scraping --depth 0
 
 # Multiple seed URLs
-./bin/webstalk crawl https://quotes.toscrape.com https://books.toscrape.com --depth 1
+./bin/scrapegoat crawl https://quotes.toscrape.com https://books.toscrape.com --depth 1
 
 # High concurrency, JSONL output
-./bin/webstalk crawl https://quotes.toscrape.com \
+./bin/scrapegoat crawl https://quotes.toscrape.com \
   --depth 2 \
   --concurrency 20 \
   --delay 200ms \
@@ -62,16 +62,16 @@ make build
   --output ./results
 
 # CSV output
-./bin/webstalk crawl https://books.toscrape.com --depth 0 --format csv
+./bin/scrapegoat crawl https://books.toscrape.com --depth 0 --format csv
 
 # Custom User-Agent
-./bin/webstalk crawl https://example.com --user-agent "MyBot/1.0 (+https://mybot.example.com)"
+./bin/scrapegoat crawl https://example.com --user-agent "MyBot/1.0 (+https://mybot.example.com)"
 
 # Verbose logging (see every request)
-./bin/webstalk crawl https://quotes.toscrape.com --depth 1 --verbose
+./bin/scrapegoat crawl https://quotes.toscrape.com --depth 1 --verbose
 
 # Show current configuration
-./bin/webstalk config
+./bin/scrapegoat config
 ```
 
 ### `crawl` Flags
@@ -95,7 +95,7 @@ make build
 
 ```bash
 # Stay locked to English Wikipedia only
-./bin/webstalk crawl https://en.wikipedia.org/wiki/Web_scraping \
+./bin/scrapegoat crawl https://en.wikipedia.org/wiki/Web_scraping \
   --depth 1 --max-requests 30 --allowed-domains en.wikipedia.org --delay 300ms
 ```
 
@@ -107,16 +107,16 @@ Index a website with full-text, headings, meta, and link graph:
 
 ```bash
 # Index a website (JSONL output, one document per page)
-./bin/webstalk search https://go.dev
+./bin/scrapegoat search https://go.dev
 
 # Custom depth and page limit
-./bin/webstalk search https://en.wikipedia.org/wiki/Artificial_intelligence \
+./bin/scrapegoat search https://en.wikipedia.org/wiki/Artificial_intelligence \
   --depth 2 \
   --max-pages 100 \
   --output ./wiki_index
 
 # Index multiple domains
-./bin/webstalk search https://docs.python.org https://docs.rust-lang.org
+./bin/scrapegoat search https://docs.python.org https://docs.rust-lang.org
 ```
 
 Each indexed document contains: `url`, `title`, `description`, `keywords`, `canonical`, `language`, `h1/h2/h3`, `body_text`, `word_count`, `outbound_links`, `images`, `content_hash`, `indexed_at`.
@@ -133,13 +133,13 @@ Crawl + summarize + entity extraction + sentiment analysis (requires an LLM):
 # With Ollama (local, no API key needed)
 ollama serve &
 ollama pull llama3.2
-./bin/webstalk ai-crawl https://news.ycombinator.com
+./bin/scrapegoat ai-crawl https://news.ycombinator.com
 
 # With OpenAI
-OPENAI_API_KEY=sk-... ./bin/webstalk ai-crawl https://techcrunch.com --llm openai --model gpt-4o-mini
+OPENAI_API_KEY=sk-... ./bin/scrapegoat ai-crawl https://techcrunch.com --llm openai --model gpt-4o-mini
 
 # Custom endpoint (any OpenAI-compatible API)
-./bin/webstalk ai-crawl https://example.com \
+./bin/scrapegoat ai-crawl https://example.com \
   --llm custom \
   --llm-endpoint http://localhost:8080 \
   --model mistral
@@ -153,7 +153,7 @@ Each item gets: `summary` (200-word summary), `entities` (people, orgs, location
 
 ## Library (Go SDK)
 
-Embed WebStalk directly in your Go application:
+Embed ScrapeGoat directly in your Go application:
 
 ```go
 package main
@@ -163,26 +163,26 @@ import (
     "strings"
     "time"
 
-    webstalk "github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/pkg/webstalk"
+    scrapegoat "github.com/IshaanNene/ScrapeGoat/pkg/scrapegoat"
 )
 
 func main() {
-    crawler := webstalk.NewCrawler(
-        webstalk.WithConcurrency(5),
-        webstalk.WithMaxDepth(2),
-        webstalk.WithDelay(500 * time.Millisecond),
-        webstalk.WithOutput("json", "./output"),
-        webstalk.WithAllowedDomains("quotes.toscrape.com"),
-        webstalk.WithMaxRequests(100),
+    crawler := scrapegoat.NewCrawler(
+        scrapegoat.WithConcurrency(5),
+        scrapegoat.WithMaxDepth(2),
+        scrapegoat.WithDelay(500 * time.Millisecond),
+        scrapegoat.WithOutput("json", "./output"),
+        scrapegoat.WithAllowedDomains("quotes.toscrape.com"),
+        scrapegoat.WithMaxRequests(100),
     )
 
     // Follow pagination links
-    crawler.OnHTML("li.next a[href]", func(e *webstalk.Element) {
+    crawler.OnHTML("li.next a[href]", func(e *scrapegoat.Element) {
         e.Follow(e.Attr("href"))
     })
 
     // Extract quotes
-    crawler.OnHTML(".quote", func(e *webstalk.Element) {
+    crawler.OnHTML(".quote", func(e *scrapegoat.Element) {
         text := strings.TrimSpace(e.Selection.Find(".text").Text())
         author := strings.TrimSpace(e.Selection.Find(".author").Text())
         if text != "" {
@@ -203,16 +203,16 @@ func main() {
 ### SDK Options
 
 ```go
-webstalk.WithConcurrency(10)               // parallel workers
-webstalk.WithMaxDepth(3)                   // crawl depth
-webstalk.WithDelay(500 * time.Millisecond) // politeness delay
-webstalk.WithOutput("jsonl", "./out")      // format + path
-webstalk.WithAllowedDomains("example.com") // domain filter
-webstalk.WithProxy("http://p1:8080", "http://p2:8080") // proxy rotation
-webstalk.WithRobotsRespect(true)           // obey robots.txt
-webstalk.WithMaxRequests(500)              // request cap
-webstalk.WithUserAgent("MyBot/1.0")        // custom UA
-webstalk.WithVerbose()                     // debug logging
+scrapegoat.WithConcurrency(10)               // parallel workers
+scrapegoat.WithMaxDepth(3)                   // crawl depth
+scrapegoat.WithDelay(500 * time.Millisecond) // politeness delay
+scrapegoat.WithOutput("jsonl", "./out")      // format + path
+scrapegoat.WithAllowedDomains("example.com") // domain filter
+scrapegoat.WithProxy("http://p1:8080", "http://p2:8080") // proxy rotation
+scrapegoat.WithRobotsRespect(true)           // obey robots.txt
+scrapegoat.WithMaxRequests(500)              // request cap
+scrapegoat.WithUserAgent("MyBot/1.0")        // custom UA
+scrapegoat.WithVerbose()                     // debug logging
 ```
 
 ---
@@ -289,7 +289,7 @@ parser:
       type: regex
 ```
 
-Use with: `./bin/webstalk crawl https://example.com --config configs/default.yaml`
+Use with: `./bin/scrapegoat crawl https://example.com --config configs/default.yaml`
 
 ---
 
@@ -339,7 +339,7 @@ Enable via config or env:
 
 ```bash
 # With metrics server
-WEBSTALK_METRICS_ENABLED=true ./bin/webstalk crawl https://example.com
+SCRAPEGOAT_METRICS_ENABLED=true ./bin/scrapegoat crawl https://example.com
 
 # Query while crawling
 curl http://localhost:9090/health
@@ -363,10 +363,10 @@ make docker-up
 ## Project Structure
 
 ```
-webstalk/
-├── bin/webstalk           # Compiled binary
-├── cmd/webstalk/          # CLI (crawl, search, ai-crawl, version, config)
-├── pkg/webstalk/          # Public SDK for embedding
+scrapegoat/
+├── bin/scrapegoat           # Compiled binary
+├── cmd/scrapegoat/          # CLI (crawl, search, ai-crawl, version, config)
+├── pkg/scrapegoat/          # Public SDK for embedding
 ├── internal/
 │   ├── engine/            # Scheduler, frontier, dedup, checkpoint, robots
 │   ├── fetcher/           # HTTP fetcher, proxy rotation

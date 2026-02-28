@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // Frontier is a thread-safe priority queue of crawl requests.

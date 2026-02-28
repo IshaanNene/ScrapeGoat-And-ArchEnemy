@@ -1,4 +1,4 @@
-module github.com/IshaanNene/ScrapeGoat-And-ArchEnemy
+module github.com/IshaanNene/ScrapeGoat
 
 go 1.24.0
 

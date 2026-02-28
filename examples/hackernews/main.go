@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	webstalk "github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/pkg/webstalk"
+	scrapegoat "github.com/IshaanNene/ScrapeGoat/pkg/scrapegoat"
 )
 
 func main() {
@@ -15,22 +15,22 @@ func main() {
 	fmt.Println("   Extracting top stories: rank, title, URL, points, author")
 	fmt.Println("   Starting crawl...")
 
-	crawler := webstalk.NewCrawler(
-		webstalk.WithConcurrency(3),
-		webstalk.WithMaxDepth(1),
-		webstalk.WithDelay(500*time.Millisecond),
-		webstalk.WithOutput("json", "./output/hackernews"),
-		webstalk.WithAllowedDomains("news.ycombinator.com"),
-		webstalk.WithMaxRequests(10),
+	crawler := scrapegoat.NewCrawler(
+		scrapegoat.WithConcurrency(3),
+		scrapegoat.WithMaxDepth(1),
+		scrapegoat.WithDelay(500*time.Millisecond),
+		scrapegoat.WithOutput("json", "./output/hackernews"),
+		scrapegoat.WithAllowedDomains("news.ycombinator.com"),
+		scrapegoat.WithMaxRequests(10),
 	)
 
 	// Follow ONLY the "More" pagination link — skip vote/item/login/submit links
-	crawler.OnHTML("a.morelink[href]", func(e *webstalk.Element) {
+	crawler.OnHTML("a.morelink[href]", func(e *scrapegoat.Element) {
 		e.Follow(e.Attr("href"))
 	})
 
 	// Extract each story row
-	crawler.OnHTML("tr.athing", func(e *webstalk.Element) {
+	crawler.OnHTML("tr.athing", func(e *scrapegoat.Element) {
 		rank := strings.TrimSuffix(strings.TrimSpace(e.Selection.Find(".rank").Text()), ".")
 		title := e.Selection.Find(".titleline > a").First().Text()
 		href, _ := e.Selection.Find(".titleline > a").First().Attr("href")

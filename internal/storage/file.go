@@ -10,7 +10,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // --- JSON Storage ---

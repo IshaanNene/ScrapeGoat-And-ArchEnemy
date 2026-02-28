@@ -176,7 +176,7 @@ func parseRobotsTxt(content string) *robotsData {
 		switch key {
 		case "user-agent":
 			userAgent = strings.ToLower(value)
-			inOurSection = (userAgent == "*" || strings.Contains(userAgent, "webstalk"))
+			inOurSection = (userAgent == "*" || strings.Contains(userAgent, "scrapegoat"))
 		case "disallow":
 			if inOurSection && value != "" {
 				data.disallowed = append(data.disallowed, value)

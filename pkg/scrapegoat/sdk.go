@@ -1,24 +1,24 @@
-// Package webstalk provides a public SDK for embedding WebStalk as a library.
+// Package scrapegoat provides a public SDK for embedding ScrapeGoat as a library.
 //
 // Example usage:
 //
-//	crawler := webstalk.NewCrawler(
-//	    webstalk.WithConcurrency(5),
-//	    webstalk.WithMaxDepth(3),
-//	    webstalk.WithOutput("json", "./output"),
+//	crawler := scrapegoat.NewCrawler(
+//	    scrapegoat.WithConcurrency(5),
+//	    scrapegoat.WithMaxDepth(3),
+//	    scrapegoat.WithOutput("json", "./output"),
 //	)
 //
-//	crawler.OnHTML("h1", func(e *webstalk.Element) {
+//	crawler.OnHTML("h1", func(e *scrapegoat.Element) {
 //	    e.Item.Set("title", e.Text())
 //	})
 //
-//	crawler.OnHTML("a[href]", func(e *webstalk.Element) {
+//	crawler.OnHTML("a[href]", func(e *scrapegoat.Element) {
 //	    e.Request.Follow(e.Attr("href"))
 //	})
 //
 //	crawler.Start("https://example.com")
 //	crawler.Wait()
-package webstalk
+package scrapegoat
 
 import (
 	"fmt"
@@ -28,16 +28,16 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/engine"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/fetcher"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/parser"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/pipeline"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/storage"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/engine"
+	"github.com/IshaanNene/ScrapeGoat/internal/fetcher"
+	"github.com/IshaanNene/ScrapeGoat/internal/parser"
+	"github.com/IshaanNene/ScrapeGoat/internal/pipeline"
+	"github.com/IshaanNene/ScrapeGoat/internal/storage"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
-// Crawler is the high-level API for using WebStalk as a library.
+// Crawler is the high-level API for using ScrapeGoat as a library.
 type Crawler struct {
 	cfg       *config.Config
 	engine    *engine.Engine

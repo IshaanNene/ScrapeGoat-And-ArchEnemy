@@ -12,13 +12,13 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/spf13/cobra"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/engine"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/fetcher"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/parser"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/pipeline"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/storage"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/engine"
+	"github.com/IshaanNene/ScrapeGoat/internal/fetcher"
+	"github.com/IshaanNene/ScrapeGoat/internal/parser"
+	"github.com/IshaanNene/ScrapeGoat/internal/pipeline"
+	"github.com/IshaanNene/ScrapeGoat/internal/storage"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 var (

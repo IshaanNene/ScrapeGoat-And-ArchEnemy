@@ -20,8 +20,8 @@ import (
 	"time"
 
 	"github.com/andybalholm/brotli"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // HTTPFetcher implements Fetcher using net/http.
@@ -203,7 +203,7 @@ func (f *HTTPFetcher) Type() string {
 // nextUserAgent returns the next User-Agent in rotation.
 func (f *HTTPFetcher) nextUserAgent() string {
 	if len(f.userAgents) == 0 {
-		return "WebStalk/" + config.Version
+		return "ScrapeGoat/" + config.Version
 	}
 	idx := f.uaIndex.Add(1) % int64(len(f.userAgents))
 	return f.userAgents[idx]

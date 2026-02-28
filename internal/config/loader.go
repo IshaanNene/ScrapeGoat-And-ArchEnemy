@@ -21,7 +21,7 @@ func Load(configPath string) (*Config, error) {
 	setDefaults(v, cfg)
 
 	// Environment variable support
-	v.SetEnvPrefix("WEBSTALK")
+	v.SetEnvPrefix("SCRAPEGOAT")
 	v.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	v.AutomaticEnv()
 
@@ -30,12 +30,12 @@ func Load(configPath string) (*Config, error) {
 		v.SetConfigFile(configPath)
 	} else {
 		// Search default locations
-		v.SetConfigName("webstalk")
+		v.SetConfigName("scrapegoat")
 		v.AddConfigPath(".")
 		v.AddConfigPath("./configs")
 		home, err := os.UserHomeDir()
 		if err == nil {
-			v.AddConfigPath(filepath.Join(home, ".webstalk"))
+			v.AddConfigPath(filepath.Join(home, ".scrapegoat"))
 		}
 	}
 

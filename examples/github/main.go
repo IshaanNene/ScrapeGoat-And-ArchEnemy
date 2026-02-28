@@ -7,24 +7,24 @@ import (
 	"strings"
 	"time"
 
-	webstalk "github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/pkg/webstalk"
+	scrapegoat "github.com/IshaanNene/ScrapeGoat/pkg/scrapegoat"
 )
 
 func main() {
 	fmt.Println("⭐ GitHub Trending Scraper")
 	fmt.Println("   Extracting trending repos: name, description, language, stars, forks")
 
-	crawler := webstalk.NewCrawler(
-		webstalk.WithConcurrency(3),
-		webstalk.WithMaxDepth(0), // Single page
-		webstalk.WithDelay(1*time.Second),
-		webstalk.WithOutput("json", "./output/github"),
-		webstalk.WithAllowedDomains("github.com"),
-		webstalk.WithMaxRequests(5),
+	crawler := scrapegoat.NewCrawler(
+		scrapegoat.WithConcurrency(3),
+		scrapegoat.WithMaxDepth(0), // Single page
+		scrapegoat.WithDelay(1*time.Second),
+		scrapegoat.WithOutput("json", "./output/github"),
+		scrapegoat.WithAllowedDomains("github.com"),
+		scrapegoat.WithMaxRequests(5),
 	)
 
 	// Extract each trending repo
-	crawler.OnHTML("article.Box-row", func(e *webstalk.Element) {
+	crawler.OnHTML("article.Box-row", func(e *scrapegoat.Element) {
 		repoPath := strings.TrimSpace(e.Selection.Find("h2 a").Text())
 		repoPath = strings.Join(strings.Fields(repoPath), "") // Remove whitespace
 		description := strings.TrimSpace(e.Selection.Find("p.col-9").Text())

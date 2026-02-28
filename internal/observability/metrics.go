@@ -54,22 +54,22 @@ func (m *Metrics) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		help  string
 		value int64
 	}{
-		{"webstalk_requests_total", "Total requests made", m.RequestsTotal.Load()},
-		{"webstalk_requests_failed_total", "Total failed requests", m.RequestsFailed.Load()},
-		{"webstalk_requests_retried_total", "Total retried requests", m.RequestsRetried.Load()},
-		{"webstalk_responses_total", "Total responses received", m.ResponsesTotal.Load()},
-		{"webstalk_responses_2xx_total", "Total 2xx responses", m.Responses2xx.Load()},
-		{"webstalk_responses_3xx_total", "Total 3xx responses", m.Responses3xx.Load()},
-		{"webstalk_responses_4xx_total", "Total 4xx responses", m.Responses4xx.Load()},
-		{"webstalk_responses_5xx_total", "Total 5xx responses", m.Responses5xx.Load()},
-		{"webstalk_items_scraped_total", "Total items scraped", m.ItemsScraped.Load()},
-		{"webstalk_items_dropped_total", "Total items dropped", m.ItemsDropped.Load()},
-		{"webstalk_items_stored_total", "Total items stored", m.ItemsStored.Load()},
-		{"webstalk_active_workers", "Currently active workers", int64(m.ActiveWorkers.Load())},
-		{"webstalk_queue_depth", "Current URL queue depth", m.QueueDepth.Load()},
-		{"webstalk_bytes_downloaded_total", "Total bytes downloaded", m.BytesDownloaded.Load()},
-		{"webstalk_proxy_rotations_total", "Total proxy rotations", m.ProxyRotations.Load()},
-		{"webstalk_proxy_errors_total", "Total proxy errors", m.ProxyErrors.Load()},
+		{"scrapegoat_requests_total", "Total requests made", m.RequestsTotal.Load()},
+		{"scrapegoat_requests_failed_total", "Total failed requests", m.RequestsFailed.Load()},
+		{"scrapegoat_requests_retried_total", "Total retried requests", m.RequestsRetried.Load()},
+		{"scrapegoat_responses_total", "Total responses received", m.ResponsesTotal.Load()},
+		{"scrapegoat_responses_2xx_total", "Total 2xx responses", m.Responses2xx.Load()},
+		{"scrapegoat_responses_3xx_total", "Total 3xx responses", m.Responses3xx.Load()},
+		{"scrapegoat_responses_4xx_total", "Total 4xx responses", m.Responses4xx.Load()},
+		{"scrapegoat_responses_5xx_total", "Total 5xx responses", m.Responses5xx.Load()},
+		{"scrapegoat_items_scraped_total", "Total items scraped", m.ItemsScraped.Load()},
+		{"scrapegoat_items_dropped_total", "Total items dropped", m.ItemsDropped.Load()},
+		{"scrapegoat_items_stored_total", "Total items stored", m.ItemsStored.Load()},
+		{"scrapegoat_active_workers", "Currently active workers", int64(m.ActiveWorkers.Load())},
+		{"scrapegoat_queue_depth", "Current URL queue depth", m.QueueDepth.Load()},
+		{"scrapegoat_bytes_downloaded_total", "Total bytes downloaded", m.BytesDownloaded.Load()},
+		{"scrapegoat_proxy_rotations_total", "Total proxy rotations", m.ProxyRotations.Load()},
+		{"scrapegoat_proxy_errors_total", "Total proxy errors", m.ProxyErrors.Load()},
 	}
 
 	for _, metric := range metrics {

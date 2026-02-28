@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
 // LLMProvider specifies which LLM backend to use.

@@ -10,16 +10,16 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/config"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/engine"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/fetcher"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/parser"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/pipeline"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/storage"
-	"github.com/IshaanNene/ScrapeGoat-And-ArchEnemy/internal/types"
+	"github.com/IshaanNene/ScrapeGoat/internal/config"
+	"github.com/IshaanNene/ScrapeGoat/internal/engine"
+	"github.com/IshaanNene/ScrapeGoat/internal/fetcher"
+	"github.com/IshaanNene/ScrapeGoat/internal/parser"
+	"github.com/IshaanNene/ScrapeGoat/internal/pipeline"
+	"github.com/IshaanNene/ScrapeGoat/internal/storage"
+	"github.com/IshaanNene/ScrapeGoat/internal/types"
 )
 
-// REPL provides an interactive command-line interface for WebStalk.
+// REPL provides an interactive command-line interface for ScrapeGoat.
 type REPL struct {
 	cfg    *config.Config
 	engine *engine.Engine
@@ -38,12 +38,12 @@ func New(cfg *config.Config, logger *slog.Logger) *REPL {
 
 // Start begins the interactive REPL loop.
 func (r *REPL) Start() {
-	fmt.Println("🕸️  WebStalk Interactive Shell")
+	fmt.Println("🕸️  ScrapeGoat Interactive Shell")
 	fmt.Println("   Type 'help' for available commands, 'exit' to quit.")
 	fmt.Println()
 
 	for {
-		fmt.Print("webstalk> ")
+		fmt.Print("scrapegoat> ")
 		line, err := r.reader.ReadString('\n')
 		if err != nil {
 			break
@@ -196,7 +196,7 @@ func (r *REPL) cmdCrawl(args []string) {
 		eng.Start()
 		eng.Wait()
 		fmt.Println("\n✅ Crawl complete!")
-		fmt.Print("webstalk> ")
+		fmt.Print("scrapegoat> ")
 	}()
 
 	fmt.Println("Crawl running in background. Use 'stats' to check progress, 'stop' to halt.")

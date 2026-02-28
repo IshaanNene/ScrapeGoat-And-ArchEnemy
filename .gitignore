@@ -1,0 +1,68 @@
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Root-level stale builds (use bin/ instead)
+/webstalk
+/aicrawl
+/ecommerce
+/github
+/hackernews
+/news
+/search
+/wikipedia
+
+# Build artifacts
+*.test
+*.out
+dist/
+
+# Go module cache
+vendor/
+
+# Output / scraped data (don't commit crawl results)
+output/
+/tmp/
+bin/
+
+# Config with secrets (keep default YAML, ignore local overrides)
+configs/local.yaml
+configs/local.yml
+*.local.yaml
+*.local.yml
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Checkpoint files (can appear in root, tests/, or any subdirectory)
+**/.webstalk_checkpoints/
+checkpoints/
+*.checkpoint
+*.ckpt
+
+# Logs
+*.log
+logs/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Test coverage
+coverage.out
+coverage.html
